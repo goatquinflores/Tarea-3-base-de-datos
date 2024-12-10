@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Productos por Reponer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+    }
+
+    a {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Consultar Productos por Reponer</h1>
+  <form action="/reponedor" method="GET">
+    <label for="id_reponedor">ID del Reponedor:</label>
+    <input type="number" id="id_reponedor" name="id_reponedor" required>
+    <button type="submit">Consultar</button>
+  </form>
+  {{#if productos.length}}
+    <h2>Productos pendientes para el reponedor con ID: {{id_reponedor}}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Producto</th>
+          <th>Nombre</th>
+          <th>Cantidad Pendiente</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each productos}}
+          <tr>
+            <td>{{id_producto}}</td>
+            <td>{{nombre}}</td>
+            <td>{{cantidad_a_reponer}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No se encontraron productos pendientes para el reponedor con ID: {{id_reponedor}}</p>
+  {{/if}}
+
+  <a href="/">Volver a la página principal</a>
+</body>
+</html>

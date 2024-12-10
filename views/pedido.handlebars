@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    p {
+      text-align: center;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 10px 0;
+      padding: 8px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Consulta de Pedido</h1>
+  <form action="/pedido/consulta" method="POST">
+    <label for="id_pedido">ID del Pedido:</label>
+    <input type="number" name="id_pedido" required>
+    <button type="submit">Consultar Pedido</button>
+  </form>
+  {{#if id_pedido}}
+    <h2>ID del Pedido: {{id_pedido}}</h2>
+
+    <form action="/pedido/direccion" method="POST">
+      <input type="hidden" name="id_pedido" value="{{id_pedido}}">
+      <button type="submit">Ver Dirección del Pedido</button>
+    </form>
+
+    <form action="/pedido/detalle" method="POST">
+      <input type="hidden" name="id_pedido" value="{{id_pedido}}">
+      <button type="submit">Ver Detalle del Pedido</button>
+    </form>
+  {{/if}}
+  {{#if error}}
+    <p style="color: red; text-align: center;">{{error}}</p>
+  {{/if}}
+  {{#if direccion}}
+    <h3>Dirección:</h3>
+    <p>{{direccion}}</p>
+  {{/if}}
+  {{#if detalle}}
+    <h3>Detalle del Pedido:</h3>
+    <ul>
+      {{#each detalle}}
+        <li>Producto: {{nombre}}, Cantidad: {{cantidad}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+  <a href="/">Volver a la página principal</a>
+
+</body>
+</html>

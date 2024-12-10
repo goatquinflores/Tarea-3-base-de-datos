@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos en Pallet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px 0;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    p {
+      text-align: center;
+      color: #333;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Productos y Ubicaciones para el Pallet con ID: {{id_pallet}}</h1>
+
+  {{#if palletData.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Stock</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each palletData}}
+          <tr>
+            <td>{{producto}}</td>
+            <td>{{stock}}</td>
+            <td>{{ubicacion}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No se encontraron productos para el pallet con ID {{id_pallet}}</p>
+  {{/if}}
+
+  <a href="/">Volver a la página principal</a>
+
+</body>
+</html>

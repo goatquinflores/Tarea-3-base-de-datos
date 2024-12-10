@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+
+  <style>
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+   
+    th, td {
+      padding: 10px; 
+      text-align: left;
+      border: 1px solid #ddd; 
+    }
+
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2; 
+    }
+
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+ 
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{title}}</h1>
+
+  {{#if ubicaciones.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each ubicaciones}}
+          <tr>
+            <td>{{this.producto}}</td>
+            <td>{{this.ubicacion}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No se encontraron ubicaciones de productos.</p>
+  {{/if}}
+  <button onclick="window.location.href='/productos'">Volver a Productos</button>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #f8f8f8;
+    }
+
+    table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Buscar pedidos por pickeador</h2>
+
+  <form action="/pickeador" method="GET">
+    <label for="id_pickeador">ID Pickeador:</label>
+    <input type="number" name="id_pickeador" id="id_pickeador" required>
+
+    <label for="fecha_inicio">Fecha inicio:</label>
+    <input type="date" name="fecha_inicio" id="fecha_inicio" required>
+
+    <label for="fecha_fin">Fecha fin:</label>
+    <input type="date" name="fecha_fin" id="fecha_fin" required>
+
+    <button type="submit">Buscar</button>
+  </form>
+
+  <h1>Pedidos realizados</h1>
+
+  {{#if pedidos.length}}
+    <table>
+      <thead>
+        <tr>
+          <th>ID Pedido</th>
+          <th>Fecha Pedido</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each pedidos}}
+          <tr>
+            <td>{{this.id_pedido}}</td>
+            <td>{{this.fecha_pedido}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>No se encontraron pedidos para el ID Pickeador y rango de fechas dados.</p>
+  {{/if}}
+
+  <a href="/">Volver a inicio</a>
+
+</body>
+</html>
